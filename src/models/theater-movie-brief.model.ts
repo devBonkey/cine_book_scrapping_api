@@ -5,6 +5,7 @@ export default interface TheaterMovieBriefModel {
     title: string,
     img: string | null,
     url: string | null,
+   // genre: string | null,
     slug: string,
 }
 

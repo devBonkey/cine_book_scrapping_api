@@ -1,15 +1,14 @@
-import { getLogger } from "log4js";
-import BaseService from "../abstracts/base.service";
-import { HTMLElement, parse } from 'node-html-parser';
-import puppeteer from 'puppeteer';
-import TheaterMovieModel from "../../models/theater-movie.model";
-import TheaterMovieBriefModel from "../../models/theater-movie-brief.model";
-import TheaterDiffusionInfoModel from "../../models/theater-movie-diffusion-info.model";
-import TheaterInfosModel from "../../models/theater-info.model";
+import TheaterEscapeGameModel from "@/models/theater-escape-game.model";
 import TheaterNameModel from "@/models/theater-name.model";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import * as cheerio from 'cheerio';
-import TheaterEscapeGameModel from "@/models/theater-escape-game.model";
+import { getLogger } from "log4js";
+import { HTMLElement, parse } from 'node-html-parser';
+import TheaterInfosModel from "../../models/theater-info.model";
+import TheaterMovieBriefModel from "../../models/theater-movie-brief.model";
+import TheaterDiffusionInfoModel from "../../models/theater-movie-diffusion-info.model";
+import TheaterMovieModel from "../../models/theater-movie.model";
+import BaseService from "../abstracts/base.service";
 
 export default class ScrappingService implements BaseService {
 
@@ -53,11 +52,16 @@ export default class ScrappingService implements BaseService {
             const title = m.find('article > h1').text();
             const imageUrl = m.find('article > figure > img').attr('src');
 
+            //Ajout du genre
+            const url1 =  htmlRoot(url);
+           // const genre = url1.find('p.genres > span').text();
+
             result.push({
                 title: title,
                 img: imageUrl || null,
                 url: url || null,
                 slug: url?.split('/').filter(e => e !== '').pop() || '',
+               // genre : genre,
             });
         }
 
@@ -271,7 +275,6 @@ export default class ScrappingService implements BaseService {
             descriptionBrief: brief!,
             trailerLink: trailerUrl!,
         };
-
         return TheaterMovie;
     }
 
