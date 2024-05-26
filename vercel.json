@@ -1,27 +1,22 @@
-{ 
+{
     "version": 2,
-    "name": "canal olympia",
     "builds": [
-        {
-            "src": "src/app.ts", 
-            "use": "@vercel/node"
-        }
+      { 
+        "src": "src/app.ts", 
+        "use": "@vercel/node" 
+      }
     ],
-    "routes" : [
-        { 
-            "src": "/(.*)", 
-            "dest": "/app.ts",
-            "methods": [
-                "GET",
-                "POST",
-                "PUT",
-                "PATCH",
-                "DELETE",
-                "HEAD",
-                "OPTIONS",
-                "TRACE",
-                "CONNECT"
-            ]
-        }
+    "routes": [
+      { 
+        "src": "/(.*)", 
+        "dest": "src/app.ts",
+        "methods": [
+          "POST",
+          "PUT",
+          "PATCH",
+          "GET",
+          "DELETE"
+        ]
+      }
     ]
-}
+  }
