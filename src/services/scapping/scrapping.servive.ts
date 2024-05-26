@@ -53,8 +53,9 @@ export default class ScrappingService implements BaseService {
             const imageUrl = m.find('article > figure > img').attr('src');
 
             //Ajout du genre
-            const url1 =  htmlRoot(url);
+           // const url1 =  htmlRoot(url);
            // const genre = url1.find('p.genres > span').text();
+          // this.logger.info(`Extracted movie: title=${title}, url=${url}, imageUrl=${imageUrl}`);
 
             result.push({
                 title: title,
